@@ -1,6 +1,6 @@
 
 baseURL: "https://github.com/jammy4t/motahary"
-title: شبكة أخلاقنا الإسلامية
+title: الشهيد مرتضى مطهري
 paginate: 20
 theme: PaperMod
 enableRobotsTXT: true
@@ -16,8 +16,8 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: شبكة أخلاقنا الإسلامية
-  description: "موقع يهتم بنشر الثقافة الأخلاقية الإسلامية تحت منبر أهل البيت عليهم السلام"
+  title: الشهيد مرتضى مطهري
+  description: "موقع يهتم بسيرة وعطاء الشهيد الراحل الشيخ مرتضى مطهري"
   keywords: [Blog, Portfolio, PaperMod]
   author: إدارة الموقع
   # author: ["Me", "You"] # multiple authors
@@ -54,7 +54,7 @@ params:
   #assetDir: static
 
   label:
-    text: "شبكة أخلاقنا الإسلامية"
+    text: "الشهيد الشيخ مرتضى مطهري"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
@@ -75,8 +75,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "موقع يهتم بنشر الثقافة الأخلاقية الإسلامية \U0001F44B"
-    Content: تحت منبر أهل البيت عليهم السلام
+    Title: "موقع يهتم بسيرة وعطاء الشهيد الراحل الشيخ مرتضى مطهري \U0001F44B"
+    Content: نموذج من النماذج العظيمة لعلماء مدرسة أهل البيت عليهم السلام
 
   socialIcons:
     - name: twitter
@@ -117,11 +117,11 @@ params:
 menu:
   main:
     - identifier: categories
-      name: الأخلاق الفاضلة
+      name: سيرة الشهيد
       url: /categories/
       weight: 10
     - identifier: tags
-      name: الأخلاق القاتلة
+      name: كتب الشهيد
       url: /tags/
       weight: 20
     - identifier: archives
