@@ -1,0 +1,225 @@
+{{/*  Source: https://github.com/anvithks/hugo-embed-pdf-shortcode
+      updated from here to display all pages instead of a pagination: https://github.com/SuryaThiru/portfolio/blob/main/layouts/shortcodes/embed-pdf.html  */}}
+
+<script type="text/javascript" src='{{"/js/pdf-js/build/pdf.js" | relURL}}'></script>
+
+<style>
+#embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 20vh;
+  /* overflow-y:scroll; */
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+#the-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+
+#loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+#loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+{{/*  Download link  */}}
+
+
+
+#overlayText {
+  word-wrap: break-word;
+  display: grid;
+  justify-content: end;
+}
+
+#overlayText a {
+  position: relative;
+  top: 10px;
+  right: 4px;
+  color: #000;
+  margin: auto;
+  background-color: #eeeeee;
+  padding: 0.3em 1em;
+  border: solid 2px;
+  border-radius: 12px;
+  border-color: #00000030;
+  text-decoration: none;
+}
+
+#overlayText svg {
+  height: 1.4em;
+  width: 1.4em;
+}
+
+
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style>
+
+<div id="embed-pdf-container">
+  <div id="loadingWrapper">
+    <div id="loading"></div>
+  </div>
+  <div id="overlayText">
+    <a href="{{ .Get "url" }}" target="_blank" rel="nofollow noopener noreferrer" aria-label="Download" download>
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+          <path d="M9 13c.3 0 .5-.1.7-.3L15.4 7 14 5.6l-4 4V1H8v8.6l-4-4L2.6 7l5.7 5.7c.2.2.4.3.7.3zm-7 2h14v2H2z" />
+      </svg>
+    </a>
+  </div>
+  <!-- Dynamically add canvas here -->
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+// If absolute URL from the remote server is provided, configure the CORS
+// header on that server.
+var url = '{{ .Get "url" }}';
+
+var hideLoader = "{{ .Get "hideLoader" }}" === "true";
+
+// Loaded via <script> tag, create shortcut to access PDF.js exports.
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+// The workerSrc property shall be specified.
+pdfjsLib.GlobalWorkerOptions.workerSrc = "{{.Site.BaseURL}}" + '/js/pdf-js/build/pdf.worker.js';
+
+// Change the Scale value for lower or higher resolution. Start from first page.
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper');
+
+
+// Attempt to show paginator and loader if enabled
+showLoader();
+
+/**
+ * Get page info from document, resize canvas accordingly, and render page.
+ * @param num Page number.
+ */
+function renderPage(num) {
+  pageRendering = true;
+  // Using promise to fetch the page
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    // Render PDF page into canvas context
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    // Wait for rendering to finish
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        // New page rendering is pending
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+// Render all pages
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+/**
+ * Hides loader and shows canvas
+ */
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+/**
+ * If we haven't disabled the loader, show loader and hide canvas
+ */
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+/**
+ * If another page rendering in progress, waits until the rendering is
+ * finished. Otherwise, executes rendering immediately.
+ */
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+/**
+ * Adds a canvas to DOM
+ */
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-' + num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+/**
+ * Asynchronously downloads PDF.
+ */
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+}
+
+</script>
