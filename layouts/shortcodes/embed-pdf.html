@@ -102,6 +102,14 @@
     <canvas class="pdf-canvas" id="pdf-canvas-{{ substr (.Get "url" | md5) 0 8 }}"></canvas>
 </div>
 
+<div class="pdf-paginator" id="pdf-paginator-{{ substr (.Get "url" | md5) 0 8 }}">
+    <button id="pdf-prev-{{ substr (.Get "url" | md5) 0 8 }}">Previous</button>
+    <button id="pdf-next-{{ substr (.Get "url" | md5) 0 8 }}">Next</button> &nbsp; &nbsp;
+    <span>
+      <span class="pdf-pagenum" id="pdf-pagenum-{{ substr (.Get "url" | md5) 0 8 }}"></span> / <span class="pdf-pagecount" id="pdf-pagecount-{{ substr (.Get "url" | md5) 0 8 }}"></span>
+    </span>
+    <a class="pdf-source" id="pdf-source-{{ substr (.Get "url" | md5) 0 8 }}" href="{{ .Get "url" }}">[pdf]</a>
+</div>
 
 <noscript>
 View the PDF file <a class="pdf-source" id="pdf-source-noscript-{{ substr (.Get "url" | md5) 0 8 }}" href="{{ .Get "url" }}">here</a>.
@@ -191,6 +199,7 @@ View the PDF file <a class="pdf-source" id="pdf-source-noscript-{{ substr (.Get 
       canvas.style.display = 'none';
     }
 
+    
     /**
      * If we haven't disabled the paginator, show paginator
      */
