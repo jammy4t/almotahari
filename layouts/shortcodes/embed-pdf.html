@@ -5,7 +5,7 @@
 <style>
   #embed-pdf-container {
     position: relative;
-    width: 100%;
+    width: 50%;
     height: auto;
     min-height: 20vh;
     /* overflow-y:scroll; */
@@ -14,7 +14,7 @@
   .pdf-canvas {
     border: 1px solid black;
     direction: ltr;
-    width: 100%;
+    width: 50%;
     height: auto;
     display: none;
   }
@@ -22,7 +22,7 @@
   #the-canvas {
     border: 1px solid black;
     direction: ltr;
-    width: 100%;
+    width: 50%;
     height: auto;
     display: none;
   }
@@ -32,7 +32,7 @@
     display: none;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 50%;
     height: 350px;
   }
   
@@ -103,12 +103,12 @@
 </div>
 
 <div class="pdf-paginator" id="pdf-paginator-{{ substr (.Get "url" | md5) 0 8 }}">
-    <button id="pdf-prev-{{ substr (.Get "url" | md5) 0 8 }}">Previous</button>
-    <button id="pdf-next-{{ substr (.Get "url" | md5) 0 8 }}">Next</button> &nbsp; &nbsp;
+    <button id="pdf-prev-{{ substr (.Get "url" | md5) 0 8 }}">الصفحة السابقة</button>
+    <button id="pdf-next-{{ substr (.Get "url" | md5) 0 8 }}">الصفحة التالية</button> &nbsp; &nbsp;
     <span>
       <span class="pdf-pagenum" id="pdf-pagenum-{{ substr (.Get "url" | md5) 0 8 }}"></span> / <span class="pdf-pagecount" id="pdf-pagecount-{{ substr (.Get "url" | md5) 0 8 }}"></span>
     </span>
-    <a class="pdf-source" id="pdf-source-{{ substr (.Get "url" | md5) 0 8 }}" href="{{ .Get "url" }}">[pdf]</a>
+    <a class="pdf-source" id="pdf-source-{{ substr (.Get "url" | md5) 0 8 }}" href="{{ .Get "url" }}">[قراءة الكتاب]</a>
 </div>
 
 <noscript>
