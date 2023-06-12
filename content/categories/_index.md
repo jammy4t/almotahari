@@ -1,4 +1,4 @@
 ---
-title: "مواضيع تتكلم عن:"
+title: "سيرة وحياة الشهيد:"
 layout: "categories"
 ---

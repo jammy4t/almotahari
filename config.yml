@@ -1,7 +1,7 @@
 
 baseURL: "https://github.com/jammy4t/motahary"
 title: الشهيد مرتضى مطهري
-paginate: 20
+paginate: 10
 theme: PaperMod
 enableRobotsTXT: true
 buildDrafts: false
@@ -9,6 +9,10 @@ buildFuture: false
 buildExpired: false
 defaultContentLanguage: ar
 #googleAnalytics: G-HZV7HK1HQH
+taxonomies:
+  category: categories
+  tag: tags
+  quotes: maqalats
 
 minify:
   disableXML: true
@@ -79,12 +83,12 @@ params:
     Content: نموذج من النماذج العظيمة لعلماء مدرسة أهل البيت عليهم السلام
 
   socialIcons:
-    - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
+#    - name: twitter
+#      url: "https://twitter.com/"
+#    - name: stackoverflow
+#      url: "https://stackoverflow.com"
+#    - name: instagram
+#      url: "instagram.com"
 
   analytics:
     google:
@@ -96,7 +100,7 @@ params:
 
   cover:
     hidden: false # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
+    hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
 
 #  editPost:
@@ -120,14 +124,18 @@ menu:
       name: سيرة الشهيد
       url: /categories/
       weight: 10
+    - identifier: maqalats
+      name: مقتطفات من فكر الشهيد
+      url: /maqalats/
+      weight: 20
     - identifier: tags
       name: كتب الشهيد
       url: /tags/
-      weight: 20
+      weight: 30
     - identifier: archives
       name: الإرشيف
       url: /archives/
-      weight: 30  
+      weight: 40  
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
