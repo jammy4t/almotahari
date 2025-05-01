@@ -1,7 +1,8 @@
 
 baseURL: "https://github.com/jammy4t/motahary"
 title: الشهيد مرتضى مطهري
-paginate: 10
+#paginate: 10
+pagination.pagerSize: 20
 theme: PaperMod
 enableRobotsTXT: true
 buildDrafts: false

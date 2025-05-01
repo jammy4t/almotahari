@@ -26,15 +26,3 @@
 
 - id: code_copy
   translation: "نسخ الكود"
-
-- id: words
-  translation:
-    zero: "صفر"
-    one: "كلمة"
-    two: "كلمتين"
-    few: "{{ .Count }} كلمات"
-    many: "{{ .Count }} كلمة"
-    other: "{{ .Count }} كلمة"
-
-
-
