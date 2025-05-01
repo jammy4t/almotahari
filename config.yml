@@ -123,7 +123,7 @@ menu:
   main:
     - identifier: categories
       name: سيرة الشهيد
-      url: /categories/
+      url: /posts/72/
       weight: 10
     - identifier: maqalats
       name: مقتطفات من فكر الشهيد
