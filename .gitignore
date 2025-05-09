@@ -1,0 +1,11 @@
+# استبعاد المجلدات التي تحتوي على الملفات التي لا تريد رفعها
+.DS_Store
+*.log
+/archetypes/
+/assets/
+/content/
+/data/
+/layouts/
+/resources/
+/static/
+/public/
