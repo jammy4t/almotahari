@@ -1,8 +1,6 @@
-baseURL: "https://mottahary.pages.dev/"
+#baseURL: "https://mottahary.pages.dev/"
+baseURL: "https://almotahari.com/"
 
-#baseURL: "https://almotahari.com/"
-
-# baseURL: "/"
 title: الشهيد مرتضى مطهري
 #paginate: 10
 pagination.pagerSize: 20
