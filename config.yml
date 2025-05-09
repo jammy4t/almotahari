@@ -1,5 +1,5 @@
 
-baseURL: "https://github.com/jammy4t/motahary"
+baseURL: "/"
 title: الشهيد مرتضى مطهري
 #paginate: 10
 pagination.pagerSize: 20
