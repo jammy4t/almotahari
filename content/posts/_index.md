@@ -1,4 +1,0 @@
----
-title: "المقالات"
-layout: "posts"
----
