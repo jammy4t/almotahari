@@ -1,0 +1,10 @@
+name = "download-limit-mottahary"
+main = "index.js"
+compatibility_date = "2024-05-01"
+
+routes = ["download.almotahari.com/bigfiles/*"]
+
+[[kv_namespaces]]
+binding = "DOWNLOAD_LIMIT"
+id = "a6ba7960b10c40ae95a9090aa4e02fa4"
+
