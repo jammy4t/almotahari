@@ -1,9 +1,9 @@
-#baseURL: "https://mottahary.pages.dev/"
 baseURL: "https://almotahari.com/"
-
 title: الشهيد مرتضى مطهري
-#paginate: 10
-pagination.pagerSize: 20
+
+pagination:
+  pagerSize: 19
+
 theme: PaperMod
 enableRobotsTXT: true
 buildDrafts: false
@@ -11,32 +11,31 @@ buildFuture: false
 buildExpired: false
 defaultContentLanguage: ar
 googleAnalytics: G-YVXDX20PJY
+
 taxonomies:
   category: categories
   tag: tags
   quotes: maqalats
 
-# i just added the following to search
 outputs:
   home:
     - HTML
     - RSS
-    - JSON # necessary for search
+    - JSON
 
 minify:
   disableXML: true
-  minifyOutput: true
+  minifyOutput: false
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  mainSections: ["posts"]
+  env: production
   title: الشهيد مرتضى مطهري
-  description: "موقع يهتم بسيرة وعطاء الشهيد الراحل الشيخ مرتضى مطهري"
-  keywords: [Blog, Portfolio, PaperMod]
+  description: "موقع يهتم بسيرة وعطاء الشهيد الراحل الشيخ مرتضى مطهري، ويعرض مقالات وكتب ومقتطفات فكرية من تراثه العلمي"
+  keywords: [مطهري, فكر إسلامي, الشهيد مرتضى مطهري, علماء الشيعة, كتب, مقالات]
   author: إدارة الموقع
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
-  defaultTheme: auto # dark, light
+  defaultTheme: auto
   disableThemeToggle: false
 
   ShowReadingTime: true
@@ -56,50 +55,25 @@ params:
   tocopen: false
 
   assets:
-#    customCSS:
- #     - css/custom.css
-    # disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
+    customCSS:
+      - css/custom.css
     favicon: "<link / abs url>"
     favicon16x16: "<link / abs url>"
     favicon32x32: "<link / abs url>"
     apple_touch_icon: "<link / abs url>"
     safari_pinned_tab: "<link / abs url>"
-#سطر اضفته لجعل مجلد الستاتيك هو مجلد الأستس
-  #assetDir: static
 
   label:
     text: "الشهيد الشيخ مرتضى مطهري"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
-  # profile-mode
   profileMode:
-    enabled: false # needs to be explicitly set
-    title: بوابة دخول الموقع
-    subtitle: "لن أستخدمها حاليا"
-    imageUrl: "<img location>"
-    imageWidth: 120
-    imageHeight: 120
-    imageTitle: my image
-    buttons:
-      - name: المقالات
-        url: posts
-      - name: الكلمات المفتاحية
-        url: tags
+    enabled: false
 
-  # home-info mode
-  homeInfoParams:
-    Title: "موقع يهتم بسيرة وعطاء الشهيد الراحل الشيخ مرتضى مطهري \U0001F44B"
-    Content: نموذج من النماذج العظيمة لعلماء مدرسة أهل البيت عليهم السلام
+  homeInfoParams: {}
 
-  socialIcons:
-#    - name: twitter
-#      url: "https://twitter.com/"
-#    - name: stackoverflow
-#      url: "https://stackoverflow.com"
-#    - name: instagram
-#      url: "instagram.com"
+  socialIcons: []
 
   analytics:
     google:
@@ -110,17 +84,10 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: false # hide everywhere but not in structured data
-    hiddenInList: false # hide on list pages and home
-    hiddenInSingle: false # hide on single page
+    hidden: false
+    hiddenInList: false
+    hiddenInSingle: true
 
-#  editPost:
-#    URL: "https://github.com/<path_to_repo>/content"
-#    Text: "Suggest Changes" # edit text
-#    appendFilePath: true # to append file path to Edit link
-
-  # for search
-  # https://fusejs.io/api/options.html
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
@@ -128,8 +95,8 @@ params:
     distance: 1000
     threshold: 0.4
     minMatchCharLength: 0
-    #keys: ["title", "permalink", "summary", "content"]
     keys: ["title"]
+
 menu:
   main:
     - identifier: categories
@@ -152,13 +119,12 @@ menu:
       name: البحث
       url: /search/
       weight: 50  
-# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+
 pygmentsUseClasses: true
+
 markup:
   highlight:
     noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
+  goldmark:
+    renderer:
+      unsafe: true
